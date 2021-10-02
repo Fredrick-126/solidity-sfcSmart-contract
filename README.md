@@ -2,7 +2,7 @@
 
 The SFC (Special Fee Contract) maintains a group of validators and their delegations.
 
-It distributes the rewards, based on internal transaction created by the Opera node.
+It distributes the rewards, based on internal transaction created by the ICICB node.
 
 # Compile in docker
 
