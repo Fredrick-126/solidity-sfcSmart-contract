@@ -9,3 +9,4 @@ coverage.json
 /coverageEnv/
 /coverageEnv/
 artifacts
+yarn.lock
