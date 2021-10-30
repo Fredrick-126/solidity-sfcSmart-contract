@@ -183,7 +183,7 @@ contract SFC is Initializable, Ownable, StakersConstants, Version {
         currentSealedEpoch = sealedEpoch;
         node = NodeDriverAuth(nodeDriver);
         totalSupply = _totalSupply;
-        baseRewardPerSecond = 6.183414351851851852 * 1e18;
+        baseRewardPerSecond = 9.506629361 * 1e18; // 6.183414351851851852 * 1e18;
         offlinePenaltyThresholdBlocksNum = 1000;
         offlinePenaltyThresholdTime = 3 days;
         getEpochSnapshot[sealedEpoch].endTime = _now();
@@ -325,7 +325,7 @@ contract SFC is Initializable, Ownable, StakersConstants, Version {
 
         require(amount > 0, "zero amount");
         require(amount <= getUnlockedStake(delegator, toValidatorID), "not enough unlocked stake");
-        require(_checkAllowedToWithdraw(delegator, toValidatorID), "outstanding sFTM balance");
+        require(_checkAllowedToWithdraw(delegator, toValidatorID), "outstanding sICICB balance");
 
         require(getWithdrawalRequest[delegator][toValidatorID][wrID].amount == 0, "wrID already exists");
 
@@ -360,7 +360,7 @@ contract SFC is Initializable, Ownable, StakersConstants, Version {
         address payable delegator = msg.sender;
         WithdrawalRequest memory request = getWithdrawalRequest[delegator][toValidatorID][wrID];
         require(request.epoch != 0, "request doesn't exist");
-        require(_checkAllowedToWithdraw(delegator, toValidatorID), "outstanding sFTM balance");
+        require(_checkAllowedToWithdraw(delegator, toValidatorID), "outstanding sICICB balance");
 
         uint256 requestTime = request.time;
         uint256 requestEpoch = request.epoch;
@@ -596,7 +596,7 @@ contract SFC is Initializable, Ownable, StakersConstants, Version {
     }
 
     function updateBaseRewardPerSecond(uint256 value) onlyOwner external {
-        require(value <= 32.967977168935185184 * 1e18, "too large reward per second");
+        require(value <= 200 * 1e18, "too large reward per second");
         baseRewardPerSecond = value;
         emit UpdatedBaseRewardPerSec(value);
     }
@@ -817,7 +817,7 @@ contract SFC is Initializable, Ownable, StakersConstants, Version {
         require(amount > 0, "zero amount");
         require(isLockedUp(delegator, toValidatorID), "not locked up");
         require(amount <= ld.lockedStake, "not enough locked stake");
-        require(_checkAllowedToWithdraw(delegator, toValidatorID), "outstanding sFTM balance");
+        require(_checkAllowedToWithdraw(delegator, toValidatorID), "outstanding sICICB balance");
 
         _stashRewards(delegator, toValidatorID);
 

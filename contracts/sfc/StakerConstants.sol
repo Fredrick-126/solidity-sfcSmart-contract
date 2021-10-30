@@ -13,11 +13,11 @@ contract StakersConstants {
     uint256 internal constant CHEATER_MASK = DOUBLESIGN_BIT;
 
     /**
-     * @dev Minimum amount of stake for a validator, i.e., 1000000 FTM
+     * @dev Minimum amount of stake for a validator, i.e., 1000000 ICICB
      */
     function minSelfStake() public pure returns (uint256) {
-        // 1000000 FTM
-        return 1000000 * 1e18;
+        // 5000000 ICICB
+        return 5 * 1e6 * 1e18;
     }
 
     /**
