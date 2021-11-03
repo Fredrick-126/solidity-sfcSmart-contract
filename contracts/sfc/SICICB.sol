@@ -889,12 +889,12 @@ contract SICICB is ERC20, ERC20Detailed, ERC20Mintable, ERC20Burnable, Ownable, 
      * these values are immutable: they can only be set once during
      * initialization.
      */
-    function initialize(address owner) public initializer {
+    constructor() public {
         // initialize the token
         ERC20Detailed.initialize("Staked ICICB", "SICICB", 18);
 
         // initialize the Ownable
-        _transferOwnership(owner);
+        // _transferOwnership(owner);
     }
 
     function addMinter(address account) external onlyOwner {

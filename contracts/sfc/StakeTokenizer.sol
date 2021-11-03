@@ -10,16 +10,9 @@ contract Spacer {
 }
 
 contract StakeTokenizer is Spacer, Initializable {
-    SFC internal sfc;
-
+    SFC internal sfc = SFC(0x1c1cB00000000000000000000000000000000000);
     mapping(address => mapping(uint256 => uint256)) public outstandingSICICB;
-
-    address public sICICBTokenAddress;
-
-    function initialize(address _sfc, address _sICICBTokenAddress) public initializer {
-        sfc = SFC(_sfc);
-        sICICBTokenAddress = _sICICBTokenAddress;
-    }
+    address public sICICBTokenAddress = 0x1C1CB000000000000000000000000000000000c1;
 
     function mintSICICB(uint256 toValidatorID) external {
         address delegator = msg.sender;
